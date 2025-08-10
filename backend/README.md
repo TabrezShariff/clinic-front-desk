@@ -1,98 +1,181 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Clinic Management System - Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A comprehensive clinic management system built with NestJS, featuring queue management, appointment scheduling, and doctor management.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 🚀 Features
 
-## Description
+### 🔐 Authentication & User Management
+- **JWT-based authentication** with secure token handling
+- **Automatic admin user creation** - If no users exist, the system automatically creates:
+  - **Email**: `admin@clinic.com`
+  - **Password**: `admin123`
+  - **Role**: `admin`
+- **Role-based access control** (admin, frontdesk, doctor)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### 🏥 Core Modules
+- **Queue Management**: Patient queue with priority and status tracking
+- **Appointment Scheduling**: Comprehensive appointment system with doctor assignment
+- **Doctor Management**: Doctor profiles with availability tracking
+- **Patient Records**: Patient information management
+- **User Management**: Staff account management
 
-## Project setup
+### 🛠 Technical Features
+- **TypeORM** with MySQL database
+- **Auto-increment synchronization** for all entities
+- **Health check endpoint** for monitoring
+- **Local development ready** with simple configuration
 
+## 🛠 Tech Stack
+
+- **Framework**: NestJS
+- **Database**: MySQL with TypeORM
+- **Authentication**: JWT with Passport
+- **Security**: bcrypt for password hashing
+
+## 📋 Prerequisites
+
+- Node.js (v18+)
+- MySQL database
+- npm or yarn
+
+## 🚀 Quick Start
+
+### 1. Install Dependencies
 ```bash
-$ npm install
+npm install
 ```
 
-## Compile and run the project
+### 2. Database Setup
+Make sure you have MySQL running locally with:
+- **Host**: localhost
+- **Port**: 3306
+- **Username**: root
+- **Password**: your_db_password
+- **Database**: clinic_system
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+```sql
+CREATE DATABASE clinic_system;
 ```
 
-## Run tests
-
+### 3. Run the Application
 ```bash
-# unit tests
-$ npm run test
+# Development
+npm run start:dev
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+# Production
+npm run build
+npm run start:prod
 ```
 
-## Deployment
+## 🔐 Authentication
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+### Default Admin User
+The system automatically creates an admin user if no users exist:
+- **Email**: `admin@clinic.com`
+- **Password**: `admin123`
+- **Role**: `admin`
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### API Endpoints
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+#### Authentication
+- `POST /auth/login` - User login
+- `GET /auth/setup-info` - Check system setup status
+
+#### Health Check
+- `GET /health` - Application health status
+
+## 🏗 Project Structure
+
+```
+src/
+├── auth/                 # Authentication module
+├── users/               # User management
+├── queue/               # Queue management
+├── appointments/        # Appointment scheduling
+├── doctors/            # Doctor management
+├── patients/           # Patient records
+├── database-init.service.ts  # Auto-increment sync
+└── health.controller.ts      # Health monitoring
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+## 🔧 Configuration
 
-## Resources
+### Database Configuration
+The application is configured for local MySQL development:
+- **Host**: localhost
+- **Port**: 3306
+- **Username**: root
+- **Password**: T@brez_8447
+- **Database**: clinic_system
+- **Synchronize**: true (auto-creates tables)
 
-Check out a few resources that may come in handy when working with NestJS:
+### JWT Configuration
+- **Secret**: SECRET_KEY (for local development)
+- **Expiration**: 1 hour
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+## 🔒 Security Features
 
-## Support
+- **JWT Authentication** with 1-hour expiration
+- **Password Hashing** using bcrypt
+- **CORS Protection** for localhost development
+- **Input Validation** with class-validator
+- **SQL Injection Protection** via TypeORM
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## 📊 Database
 
-## Stay in touch
+### Auto-Increment Synchronization
+The system automatically synchronizes AUTO_INCREMENT values for all entities:
+- Users
+- Doctors
+- Patients
+- Appointments
+- Queue entries
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+This ensures sequential IDs starting from 1, even after data deletion.
 
-## License
+## 🧪 Testing
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+```bash
+# Unit tests
+npm run test
+
+# E2E tests
+npm run test:e2e
+
+# Test coverage
+npm run test:cov
+```
+
+## 📝 API Documentation
+
+### Authentication Flow
+1. User submits credentials to `/auth/login`
+2. System validates credentials
+3. Returns JWT token and user info
+4. Frontend stores token for subsequent requests
+
+### Error Handling
+- Invalid credentials: 401 Unauthorized
+- Validation errors: 400 Bad Request
+- Server errors: 500 Internal Server Error
+
+## 🚀 Local Development Checklist
+
+- [ ] MySQL server running on localhost:3306
+- [ ] Database `clinic_system` created
+- [ ] Backend running on port 3000
+- [ ] Frontend running on port 3001
+- [ ] Test admin login: admin@clinic.com / admin123
+- [ ] Check health endpoint: http://localhost:3000/health
+
+## 📞 Support
+
+For issues or questions:
+1. Check the health endpoint: `GET /health`
+2. Verify MySQL is running and accessible
+3. Check application logs
+4. Ensure database exists and is accessible
+
+---
+
+**Note**: This backend is designed to work with the clinic-system frontend. Make sure your frontend is running on `http://localhost:3001` for proper CORS handling.

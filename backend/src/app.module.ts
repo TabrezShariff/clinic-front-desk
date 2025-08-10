@@ -7,19 +7,22 @@ import { QueueModule } from './queue/queue.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { DatabaseInitService } from './database-init.service';
+import { HealthController } from './health.controller';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: process.env.DB_HOST,
-      port: parseInt(process.env.DB_PORT || '3306', 10),
-      username: process.env.DB_USER,
-      password: process.env.DB_PASS,
-      database: process.env.DB_NAME,
+      host: 'localhost',
+      port: 3306,
+      username: 'root',
+      password: 'Your_db_password',
+      database: 'clinic_system',
       autoLoadEntities: true,
-      synchronize: process.env.NODE_ENV !== 'production', 
-      
+      synchronize: true,
     }),
     DoctorsModule,
     PatientsModule,
@@ -28,6 +31,7 @@ import { DatabaseInitService } from './database-init.service';
     UsersModule,
     AuthModule,
   ],
+  controllers: [HealthController],
   providers: [DatabaseInitService],
 })
 export class AppModule {}
