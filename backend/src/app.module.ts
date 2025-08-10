@@ -8,18 +8,18 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { DatabaseInitService } from './database-init.service';
 
-
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',           // change if your MySQL username is different
-      password: 'T@brez_8447',  // put your MySQL password
-      database: 'clinic_system',  // DB we created in Step 0
-      autoLoadEntities: true,     // Automatically load entities
-      synchronize: true,          // Auto create tables (only for dev)
+      host: process.env.DB_HOST,
+      port: parseInt(process.env.DB_PORT || '3306', 10),
+      username: process.env.DB_USER,
+      password: process.env.DB_PASS,
+      database: process.env.DB_NAME,
+      autoLoadEntities: true,
+      synchronize: process.env.NODE_ENV !== 'production', 
+      
     }),
     DoctorsModule,
     PatientsModule,
