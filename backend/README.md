@@ -105,7 +105,7 @@ The application is configured for local MySQL development:
 - **Host**: localhost
 - **Port**: 3306
 - **Username**: root
-- **Password**: T@brez_8447
+- **Password**: your_db_password
 - **Database**: clinic_system
 - **Synchronize**: true (auto-creates tables)
 
