@@ -1,0 +1,2 @@
+2cd backend
+echo "20" > .nvmrc

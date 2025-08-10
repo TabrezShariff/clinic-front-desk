@@ -1,6 +1,9 @@
 [build]
 builder = "NIXPACKS"
-buildCommand = "npm ci && npm run build"
+nixpacksVersion = "1.21.0"
+
+[build.env]
+NODE_VERSION = "20"
 
 [deploy]
 startCommand = "npm run start:prod"
