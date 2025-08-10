@@ -159,6 +159,30 @@ npm run test:cov
 - Validation errors: 400 Bad Request
 - Server errors: 500 Internal Server Error
 
+## 🚀 Railway Deployment
+
+### Environment Variables
+Set these in Railway:
+```bash
+DB_HOST=${MYSQL_HOST}
+DB_PORT=${MYSQL_PORT}
+DB_USERNAME=${MYSQL_USERNAME}
+DB_PASSWORD=${MYSQL_PASSWORD}
+DB_DATABASE=${MYSQL_DATABASE}
+NODE_ENV=production
+PORT=3000
+JWT_SECRET=your-secret-key
+FRONTEND_URL=https://your-frontend-domain.vercel.app
+```
+
+### Database Setup
+1. Create MySQL database in Railway
+2. Import your `clinic.sql` dump
+3. Deploy the application
+
+### Health Check
+- `GET /api/v1/health` - Application status
+
 ## 🚀 Local Development Checklist
 
 - [ ] MySQL server running on localhost:3306
@@ -166,12 +190,12 @@ npm run test:cov
 - [ ] Backend running on port 3000
 - [ ] Frontend running on port 3001
 - [ ] Test admin login: admin@clinic.com / admin123
-- [ ] Check health endpoint: http://localhost:3000/health
+- [ ] Check health endpoint: http://localhost:3000/api/v1/health
 
 ## 📞 Support
 
 For issues or questions:
-1. Check the health endpoint: `GET /health`
+1. Check the health endpoint: `GET /api/v1/health`
 2. Verify MySQL is running and accessible
 3. Check application logs
 4. Ensure database exists and is accessible
